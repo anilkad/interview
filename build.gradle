@@ -1,0 +1,69 @@
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building a CLI application
+    id 'application'
+
+    id "org.springframework.boot" version "2.1.8.RELEASE"
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+
+    id 'jacoco'
+
+    id 'com.palantir.docker' version '0.22.1'
+
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    jcenter()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.1.8.RELEASE'
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:28.0-jre'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.8.RELEASE'
+
+    testImplementation 'junit:junit:4.12'
+
+}
+
+group = 'interview'
+
+application {
+    // Define the main class for the application
+    mainClassName = 'crypto.App'
+}
+
+test {
+    // Use junit platform for unit tests
+    useJUnit()
+}
+
+jacocoTestReport.reports.html.enabled = true
+
+test.finalizedBy( jacocoTestReport)
+
+
+bootJar {
+    mainClassName = 'crypto'
+    version = '0.0.0.SNAPSHOT'
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+    name "${project.group}/${bootJar.mainClassName}"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
+}
