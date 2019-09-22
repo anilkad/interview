@@ -1,4 +1,4 @@
-package crypto.domain;
+package crypto.pricing.domain;
 
 
 import javax.persistence.*;

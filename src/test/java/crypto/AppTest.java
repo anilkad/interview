@@ -32,9 +32,9 @@ public class AppTest {
     public void appHasAGreeting() {
 
         ResponseEntity<String> response =
-                testRestTemplate.getForEntity(URL + this.port + "/",String.class);
+                testRestTemplate.getForEntity(URL + this.port + "/", String.class);
 
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
 
     }
 }
