@@ -19,7 +19,7 @@ public class RequestPricePointTest {
 	@Rule
     public PactProviderRule mockTestProvider = new PactProviderRule("PricingService", "localhost", 8082, this);
 
-	@Pact(provider = "PricingService", consumer = "test_consumer")
+	@Pact(provider = "PricingService", consumer = "DecisionService")
 	public RequestResponsePact createPact(PactDslWithProvider builder) {
 		Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json;charset=UTF-8");
