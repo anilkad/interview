@@ -62,6 +62,15 @@ test {
     
 }
 
+pact {
+    publish {
+        pactBrokerUrl = 'http://0.0.0.0:9292/'
+        pactBrokerUsername = ''
+        pactBrokerPassword = ''
+        version = '3.5.0'
+    }
+}
+
 jacocoTestReport.reports.html.enabled = true
 
 test.finalizedBy( jacocoTestReport)
