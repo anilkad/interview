@@ -12,3 +12,7 @@
 
 See the service working by  
 >curl http://localhost:8080/decide
+
+## run pact tests 
+running pacts on consumer side it's just a Junit test execution
+>./gradlew clean test 

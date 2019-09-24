@@ -1,17 +1,16 @@
 package crypto.decision;
 
+import static org.junit.Assert.assertFalse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-
 import au.com.dius.pact.consumer.junit.PactProviderRule;
 import au.com.dius.pact.consumer.junit.PactVerification;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
+import crypto.domain.PricePoint;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 
 
@@ -40,9 +39,9 @@ public class RequestPricePointTest {
 	 @PactVerification("PricingService")
 	    public void pricePointRequestTest() {
 		 //execute a DecisionService request to mockserver	
-		 DecisionService decisionService = new DecisionService();
-		 //decisionService.<new_method_here>
+		 DecisionService decisionService = new DecisionService(mockTestProvider.getUrl());
+		 List<PricePoint> result = decisionService.getPricepoints();
 
-		 //verifications 
+		 assertFalse(result.isEmpty());
 		 }
 }
