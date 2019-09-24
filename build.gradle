@@ -11,12 +11,20 @@ plugins {
     id 'jacoco'
 
     id 'com.palantir.docker' version '0.22.1'
+    
+    //pact 
+    id("au.com.dius.pact") version "4.0.0-beta.6"
+    
 
 }
 
 repositories {
     // Use jcenter for resolving dependencies.
     jcenter()
+    
+    //requred for pact-jvm-consumer-junit
+    mavenCentral()
+    
 }
 
 dependencies {
@@ -31,10 +39,14 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.8.RELEASE'
 
     testImplementation 'junit:junit:4.12'
-
+    
+    testCompile 'au.com.dius:pact-jvm-consumer-junit:4.0.0-beta.6'
+    
 }
 
 group = 'interview'
+apply plugin: "eclipse"
+
 
 application {
     // Define the main class for the application
@@ -44,6 +56,10 @@ application {
 test {
     // Use junit platform for unit tests
     useJUnit()
+    
+    //pact
+    systemProperties['pact.rootDir'] = "$buildDir/pacts"
+    
 }
 
 jacocoTestReport.reports.html.enabled = true
