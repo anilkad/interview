@@ -69,7 +69,22 @@ pact {
         pactBrokerPassword = ''
         version = '3.5.0'
     }
-}
+    serviceProviders {
+        ExampleProvider {
+			protocol = 'http'
+            host = 'localhost'
+            port = 8080
+            path = '/'
+    
+            // Test Pacts from local 
+            hasPactsWith('Crypto - All contracts') {
+            pactFileLocation = file("$buildDir/pacts")}
+    
+            // Test Pacts from Pact Broker
+            hasPactsFromPactBroker('http://0.0.0.0:9292/', authentication: ['Basic','' , '']) 
+            }
+        }
+	}	
 
 jacocoTestReport.reports.html.enabled = true
 
