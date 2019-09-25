@@ -39,7 +39,8 @@ public class RequestPricePointTest {
 	 @PactVerification("PricingService")
 	    public void pricePointRequestTest() {
 		 //execute a DecisionService request to mockserver	
-		 DecisionService decisionService = new DecisionService(mockTestProvider.getUrl());
+		 DecisionService decisionService = new DecisionService();
+		 decisionService.setBaseURL(mockTestProvider.getUrl());
 		 List<PricePoint> result = decisionService.getPricepoints();
 
 		 assertFalse(result.isEmpty());

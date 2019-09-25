@@ -22,12 +22,12 @@ public class DecisionService {
     
     private final String SERVICE_PATH = "/fetchprices/after?numSeconds=";
     private final int DURATION_TO_LOOK = 300;
-    private final String baseURL;
+    private String baseURL;
     
-    @Autowired
-    public DecisionService(@Value("${BASE_URL}") String baseURL) {
-        this.baseURL = baseURL;
-    }
+    
+    public void setBaseURL(String baseURL) {
+		this.baseURL = baseURL;
+	}
    
     public List<PricePoint> getPricepoints() { 	
     	RestTemplate restTemplate = new RestTemplate();
