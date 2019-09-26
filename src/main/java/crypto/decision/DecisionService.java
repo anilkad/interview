@@ -22,7 +22,7 @@ public class DecisionService {
     
     private final String SERVICE_PATH = "/fetchprices/after?numSeconds=";
     private final int DURATION_TO_LOOK = 300;
-    private String baseURL;
+    private String baseURL = "http://localhost:8080";
     
     
     public void setBaseURL(String baseURL) {

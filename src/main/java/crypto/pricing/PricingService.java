@@ -27,7 +27,7 @@ public class PricingService {
 
     // TODO Needs to some from external config
     private final String SERVICE_PATH = "/min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD&api_key=";
-    private String baseURL;
+    private String baseURL = "http://localhost:8080";
 
     @Autowired
     private PricePointRepository pricingRepository;
