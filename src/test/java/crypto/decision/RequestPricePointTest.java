@@ -24,13 +24,14 @@ public class RequestPricePointTest {
 	
 	DslPart body = PactDslJsonArray
 			.arrayEachLike()
-				.date("timeOfPrice")
-				.integerType("btcPrice")
-				.integerType("ethPrice")
+				.date("timeOfPrice", "yyyy-MM-dd'T'HH:mm:ss.SSS'+'SSSS")
+				.decimalType("btcPrice")
+				.decimalType("ethPrice")
 			.closeObject();
 	
 	@Pact(provider = "PricingService", consumer = "DecisionService")
 	public RequestResponsePact createPact(PactDslWithProvider builder) {
+		 System.out.println("body:  "+body); 
 		Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json;charset=UTF-8");
 		return builder.given("PricingService has price-points data")
