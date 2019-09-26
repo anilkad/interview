@@ -1,8 +1,10 @@
 package crypto.decision.strategy;
 
+import com.google.common.collect.Iterables;
 import crypto.decision.domain.PriceData;
 
 import java.util.List;
+import reactor.core.publisher.Flux;
 
 /**
  * Poor Man's strategy to trade
@@ -10,15 +12,21 @@ import java.util.List;
 public class AveragePriceIncreaseDecisionStrategy implements DecisionStrategy {
 
     @Override
-    public String decide(List<PriceData> pricePoints) {
+    public String decide(Flux<PriceData> pricePoints) {
 
-        int size = pricePoints.size();
-        Double btcFirst = pricePoints.get(0).getBtcPrice();
-        Double btcLast = pricePoints.get(size - 1).getBtcPrice();
+        List<PriceData> priceData = pricePoints
+            .collectList()
+            .block();
+
+        PriceData first = Iterables.getFirst(priceData, null);
+        PriceData last = Iterables.getLast(priceData);
+
+        Double btcFirst = first.getBtcPrice();
+        Double btcLast = last.getBtcPrice();
         Double btcRoi = btcLast / btcFirst;
 
-        Double ethFirst = pricePoints.get(0).getEthPrice();
-        Double ethLast = pricePoints.get(size - 1).getEthPrice();
+        Double ethFirst = first.getEthPrice();
+        Double ethLast = last.getEthPrice();
         Double ethRoi = ethLast / ethFirst;
 
         return btcRoi > ethRoi ? "BTC" : "ETH";

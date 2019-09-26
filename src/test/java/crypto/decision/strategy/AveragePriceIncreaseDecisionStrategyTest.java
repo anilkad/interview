@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import reactor.core.publisher.Flux;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +20,7 @@ public class AveragePriceIncreaseDecisionStrategyTest {
         priceDataList.add(new PriceData(3.0, 2.5));
         priceDataList.add(new PriceData(4.0, 3.0));
 
-        assertEquals("BTC", strategy.decide(priceDataList));
+        assertEquals("BTC", strategy.decide(Flux.fromIterable(priceDataList)));
 
 
     }

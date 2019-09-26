@@ -5,6 +5,8 @@ public class PriceData {
     private Double btcPrice;
     private Double ethPrice;
 
+    public PriceData() { }
+
     public PriceData(Double btcPrice, Double ethPrice) {
         this.btcPrice = btcPrice;
         this.ethPrice = ethPrice;
