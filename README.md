@@ -13,13 +13,13 @@
 See the service working by  
 >curl http://localhost:8080/decide
 
-## Run Tests 
-running pacts on consumer side it's just a Junit test execution
-
+### pact
+##### Run Tests 
 >./gradlew clean test 
 
-@PactVerification unit test will output the contract(s) on > ⁨build⁩ ▸ ⁨pacts⁩ 
+##### Publish contracts to pact broker
+>./gradlew pactPublish
 
-contracts == json files with the name “consumername-providername.json” 
-
+##### Verify provider against contracts
+>./gradlew pactVerify
 
