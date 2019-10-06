@@ -1,0 +1,10 @@
+{
+  "simulation": "crypto.CryptoBasicSimulation",
+  "simulationId": "cryptobasicsimulation",
+  "start": 1570339810456,
+  "description": "",
+  "scenarios": ["Lookup Decide"],
+  "assertions": [
+
+  ]
+}
