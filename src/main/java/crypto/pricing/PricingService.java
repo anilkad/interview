@@ -32,10 +32,17 @@ public class PricingService {
         return pricingRepository.findAllByTimeOfPriceAfter(dateTime);
     }
 
+    /**
+     * This is going to save the given price point in the repository
+     * @param pricePoint
+     */
     public void savePricePoint(PricePoint pricePoint) {
         pricingRepository.save(pricePoint);
     }
 
+    /**
+     * Fetches a price from external servuce crypto compare and saves in the repo
+     */
     public void fetchStockPrice() {
         RestTemplate restTemplate = new RestTemplate();
         PriceSource priceSource = restTemplate.getForEntity(PRICE_FETCH_URL, PriceSource.class).getBody();

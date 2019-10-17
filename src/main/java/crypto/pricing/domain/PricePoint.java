@@ -1,9 +1,14 @@
 package crypto.pricing.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@AllArgsConstructor
+@Slf4j
 @Entity
 public class PricePoint {
 
@@ -17,29 +22,11 @@ public class PricePoint {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeOfPrice;
 
-    protected PricePoint() {
-
-    }
-
     public PricePoint(Double btcPrice, Double ethPrice, Date timeOfPrice) {
         this.btcPrice = btcPrice;
         this.ethPrice = ethPrice;
         this.timeOfPrice = timeOfPrice;
     }
-
-    public Double getBtcPrice() {
-        return btcPrice;
-    }
-
-    public Double getEthPrice() {
-        return ethPrice;
-    }
-
-
-    public Date getTimeOfPrice() {
-        return timeOfPrice;
-    }
-
 
     public String toString() {
         return "At time " + timeOfPrice + " price of BTC is:"

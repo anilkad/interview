@@ -12,6 +12,8 @@ plugins {
 
     id 'com.palantir.docker' version '0.22.1'
 
+    id 'io.freefair.lombok' version "4.1.1"
+
 }
 
 repositories {
@@ -27,6 +29,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.1.8.RELEASE'
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.0-jre'
+
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
     compile 'org.springframework.boot:spring-boot-starter-webflux:2.1.8.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-actuator:2.1.8.RELEASE'

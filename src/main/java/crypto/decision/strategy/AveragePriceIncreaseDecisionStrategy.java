@@ -11,6 +11,11 @@ import reactor.core.publisher.Flux;
  */
 public class AveragePriceIncreaseDecisionStrategy implements DecisionStrategy {
 
+    /**
+     * It takes a list of price points and then decides if one has to buy a BTC or ETH
+     * @param pricePoints
+     * @return
+     */
     @Override
     public String decide(Flux<PriceData> pricePoints) {
 

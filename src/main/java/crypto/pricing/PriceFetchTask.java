@@ -10,6 +10,9 @@ public class PriceFetchTask {
     @Autowired
     PricingService pricingService;
 
+    /**
+     * Fetches prices from external services every two seconds
+     */
     @Scheduled(fixedRate = 2000)
     public void fetchStockPrice() {
         pricingService.fetchStockPrice();
